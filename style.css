@@ -122,6 +122,7 @@ body {
 .hamburger {
     display: none;
     cursor: pointer;
+    z-index: 1001;
 }
 
 .hamburger span {
@@ -165,6 +166,23 @@ body {
     background: linear-gradient(to right, #fff, #999);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    height: 1.2em; /* fixed height for typing effect */
+}
+
+/* Typing Cursor */
+.typing-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background-color: var(--accent);
+    margin-left: 5px;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 .subtitle {
@@ -241,6 +259,8 @@ body {
     opacity: 0.2;
     border-radius: 50%;
     animation: float 6s ease-in-out infinite;
+    position: absolute; /* Fix position */
+    z-index: -1;
 }
 
 @keyframes float {
@@ -508,8 +528,22 @@ footer p {
     }
 
     .nav-links {
-        display: none;
-        /* Add JS toggle later */
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        right: 0;
     }
 
     .hero {
@@ -602,4 +636,186 @@ footer p {
     color: var(--accent);
     font-weight: 700;
     font-size: 1.1rem;
+}
+
+/* --- NEW STYLES --- */
+
+/* Leadership Block */
+.leadership-block {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.leadership-block h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.leadership-block h3 i {
+    color: var(--accent);
+}
+
+.highlight-box {
+    background: rgba(59, 130, 246, 0.1);
+    border-left: 3px solid var(--accent);
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+    color: #ddd;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* Skill Categories */
+.skill-category {
+    margin-bottom: 1.5rem;
+}
+
+.category-title {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Education Header */
+.education-header {
+    margin-bottom: 1.5rem;
+}
+
+.education-header h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.uni-name {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* Badges */
+.badge-wip {
+    font-size: 0.7rem;
+    background: #eab308;
+    color: #000;
+    padding: 2px 6px;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+    font-weight: 700;
+}
+
+/* Staggered Animation */
+.education-grid .course-card,
+.projects-grid .project-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* We will handle the actual delay triggering in JS or via classes */
+.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Work Experience Timeline */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: rgba(59, 130, 246, 0.2);
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 3rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -4px;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.timeline-content {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+}
+
+.timeline-content:hover {
+    border-color: var(--accent);
+    transform: translateX(5px);
+}
+
+.timeline-date {
+    display: block;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-role {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.timeline-company {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.timeline-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.timeline-list li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.timeline-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
 }
