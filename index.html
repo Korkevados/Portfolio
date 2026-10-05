@@ -8,6 +8,27 @@
     <meta name="description"
         content="Portfolio of Daniel Korkevados - Software Engineer and Leader. Combining technical expertise with driven initiative.">
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C4MT334MZN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        // Consent Mode: analytics storage denied until visitor accepts
+        gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+        try {
+            if (localStorage.getItem('cookie-consent') === 'granted') {
+                gtag('consent', 'update', { analytics_storage: 'granted' });
+            }
+        } catch (e) { }
+        gtag('js', new Date());
+        gtag('config', 'G-C4MT334MZN');
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +66,7 @@
             <div class="hero-content">
                 <span class="greeting">Hello, I'm</span>
                 <h1 class="glitch" data-text="Daniel Korkevados">Daniel Korkevados</h1>
-                <h2 class="subtitle">M.Sc. Data Science Student <span class="accent">&</span> Backend Developer @ Akamai <img src="https://www.google.com/s2/favicons?domain=akamai.com&sz=64" alt="Akamai" class="inline-logo"></h2>
+                <h2 class="subtitle">B.Sc. Data Engineering &amp; Science <span class="accent">&</span> Backend Developer @ Akamai (Guardicore) <img src="https://www.google.com/s2/favicons?domain=akamai.com&sz=64" alt="Akamai" class="inline-logo"></h2>
                 <p class="bio-snippet">“From data to decisions: building scalable systems driven by machine learning, deep learning, and real-world impact.”.</p>
                 <div class="cta-buttons">
                     <a href="#projects" class="btn primary">View Work</a>
@@ -74,7 +95,7 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-grid">
                 <div class="about-text">
-                    <p>I am an <strong>M.Sc. student in Data Science</strong> at Ben-Gurion University, focused on GNN research, with a B.Sc. in Data Engineering & Science. Currently, I work as a <strong>Backend Developer at Akamai Technologies</strong>, building POC products in the Architecture team across large-scale cloud and security environments, including Kubernetes-based data anonymization pipelines and a graph-knowledge-base powering AI agent retrieval.</p>
+                    <p>I am a <strong>B.Sc. graduate in Data Engineering & Science</strong> from Ben-Gurion University. Currently, I work as a <strong>Backend Developer at Akamai Technologies (Guardicore)</strong>, building POC products in the Architecture team across large-scale cloud and security environments, including Kubernetes-based data anonymization pipelines and a graph-knowledge-base powering AI agent retrieval.</p>
                     
                     <div class="leadership-block">
                         <h3><i class="fas fa-medal"></i> Leadership & Impact</h3>
@@ -169,7 +190,7 @@
                             <img src="https://www.google.com/s2/favicons?domain=akamai.com&sz=64" alt="Akamai" class="company-logo">
                             Backend Developer
                         </h3>
-                        <span class="timeline-company">Akamai Technologies</span>
+                        <span class="timeline-company">Akamai Technologies (Guardicore)</span>
                         <ul class="timeline-list">
                             <li>Developing POC products in the <strong>Architecture team</strong> within a large-scale cloud and security environment.</li>
                             <li>Working with <strong>Kubernetes environments</strong> and developing large-scale data anonymization processes.</li>
@@ -238,12 +259,6 @@
             <div class="floating-shape shape-ring shape-2"></div>
             
             <h2 class="section-title">Education & Academia</h2>
-            <div class="education-header">
-                <h3>M.Sc. in Data Science</h3>
-                <span class="uni-name">Ben-Gurion University · 2026 – Present</span>
-            </div>
-            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Currently focused on <strong>Graph Neural Network</strong> research.</p>
-
             <div class="education-header">
                 <h3>B.Sc. in Data Engineering & Science</h3>
                 <span class="uni-name">Ben-Gurion University · 2022 – 2026 · GPA 88</span>
@@ -373,6 +388,15 @@
             </div>
         </footer>
     </main>
+
+    <!-- Cookie consent banner -->
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent" hidden>
+        <p>This site uses cookies for anonymous analytics (Google Analytics).</p>
+        <div class="cookie-actions">
+            <button type="button" id="cookie-decline" class="btn secondary">Decline</button>
+            <button type="button" id="cookie-accept" class="btn primary">Accept</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

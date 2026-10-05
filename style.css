@@ -1360,3 +1360,50 @@ footer p {
         display: none;
     }
 }
+/* Cookie consent banner */
+.cookie-banner {
+    position: fixed;
+    left: 50%;
+    bottom: 1.25rem;
+    transform: translateX(-50%);
+    width: min(92%, 640px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(15, 15, 22, 0.92);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    z-index: 10000;
+}
+
+.cookie-banner[hidden] {
+    display: none;
+}
+
+.cookie-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.cookie-actions .btn {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+@media (max-width: 520px) {
+    .cookie-banner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cookie-actions {
+        justify-content: flex-end;
+    }
+}

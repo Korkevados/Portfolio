@@ -333,3 +333,48 @@ const highlightNav = () => {
 
 window.addEventListener('scroll', highlightNav);
 highlightNav(); // Run on load
+
+
+// --- Analytics: track button / link clicks and CV downloads ---
+document.addEventListener('click', (e) => {
+    if (typeof gtag !== 'function') return;
+    const el = e.target.closest('a, button');
+    if (!el) return;
+
+    const href = el.getAttribute('href') || '';
+    const label = (el.textContent || '').trim().replace(/\s+/g, ' ') || el.getAttribute('aria-label') || href;
+
+    if (/\.pdf($|\?)/i.test(href)) {
+        gtag('event', 'file_download', {
+            file_name: decodeURIComponent(href.split('/').pop()),
+            link_url: href,
+            button_label: label
+        });
+    }
+    gtag('event', 'button_click', {
+        button_label: label,
+        link_url: href
+    });
+});
+
+
+// --- Cookie consent banner ---
+(() => {
+    const banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+
+    let stored = null;
+    try { stored = localStorage.getItem('cookie-consent'); } catch (e) { }
+    if (stored) return;
+
+    banner.hidden = false;
+    const choose = (value) => {
+        try { localStorage.setItem('cookie-consent', value); } catch (e) { }
+        if (typeof gtag === 'function') {
+            gtag('consent', 'update', { analytics_storage: value });
+        }
+        banner.hidden = true;
+    };
+    document.getElementById('cookie-accept').addEventListener('click', () => choose('granted'));
+    document.getElementById('cookie-decline').addEventListener('click', () => choose('denied'));
+})();
